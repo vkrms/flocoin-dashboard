@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { EventForm } from './components/EventForm';
 import { Menu, X } from 'lucide-react';
@@ -6,17 +6,22 @@ import { ThemeProvider } from './contexts/ThemeContext';
 export function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
+  // Force dark mode on initial load
+  useEffect(() => {
+    document.documentElement.classList.remove('light');
+    document.documentElement.classList.add('dark');
+  }, []);
   return <ThemeProvider>
-      <div className="bg-[#09090b] dark:bg-[#09090b] light:bg-[#f8f9fa] h-screen flex flex-col text-gray-800 dark:text-white light:text-gray-800 font-sans">
+      <div className="bg-[#09090b] h-screen flex flex-col text-white font-sans">
         {/* Mobile header with menu button */}
-        <div className="lg:hidden flex items-center justify-between p-4 bg-[#1c1c1f] dark:bg-[#1c1c1f] light:bg-white sticky top-0 z-20 border-b border-[#27272a] dark:border-[#27272a] light:border-gray-200">
+        <div className="lg:hidden flex items-center justify-between p-4 bg-[#1c1c1f] sticky top-0 z-20 border-b border-[#27272a]">
           <div className="flex items-center gap-2">
             {/* Show icon on all screen sizes */}
             <img src="/eventflo-icon.png" alt="eventflo icon" className="h-8 w-auto" />
             {/* Hide full logo on all screen sizes */}
             <img src="/eventflo-logo.png" alt="eventflo logo" className="h-8 w-auto hidden" />
           </div>
-          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 rounded-md hover:bg-[#27272a] dark:hover:bg-[#27272a] light:hover:bg-gray-100" aria-label="Toggle menu">
+          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 rounded-md hover:bg-[#27272a]" aria-label="Toggle menu">
             {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
