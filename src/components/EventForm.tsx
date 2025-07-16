@@ -50,9 +50,9 @@ export function EventForm() {
       });
     }
   };
-  return <div className="h-full flex flex-col">
+  return <div className="h-full flex flex-col w-fit">
       {/* Header */}
-      <div className="flex justify-between items-center py-4">
+      <div className="flex justify-between items-center py-4 pr-6">
         <h1 className="text-2xl md:text-3xl font-bold">Event Creation</h1>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm">
