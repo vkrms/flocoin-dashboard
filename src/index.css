@@ -1,7 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
+@font-face {
+  font-family: 'Neue Haas Grotesk';
+  src: url('/fonts/NHaasGroteskTXPro-RG.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -32,9 +42,9 @@
     --muted-foreground: 215.4 16.3% 56.9%;
     --accent: 216 34% 17%;
     --accent-foreground: 210 40% 98%;
-    --popover: 224 71% 4%;
+    --popover: 0 0 13%/67%;
     --popover-foreground: 215 20.2% 65.1%;
-    --border: 216 34% 17%;
+    --border: 0 0 100%/20%;
     --input: 216 34% 17%;
     --card: 224 71% 4%;
     --card-foreground: 213 31% 91%;
@@ -75,7 +85,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-neue-haas;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
@@ -85,7 +95,7 @@
   height: 8px;
 }
 .dark::-webkit-scrollbar-track {
-  background: #27272a;
+  background: #3333;
   border-radius: 4px;
 }
 .dark::-webkit-scrollbar-thumb {
@@ -96,7 +106,7 @@
   background: #4b4b53;
 }
 .dark::-webkit-scrollbar-corner {
-  background: #27272a;
+  background: #3333;
 }
 /* Light mode scrollbar styles */
 .light::-webkit-scrollbar {
@@ -122,7 +132,7 @@
   scrollbar-width: thin;
 }
 .dark {
-  scrollbar-color: #3f3f46 #27272a;
+  scrollbar-color: #3f3f46 #3333;
 }
 .light {
   scrollbar-color: #c1c1c1 #f1f1f1;
@@ -134,4 +144,28 @@
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Chrome, Safari and Opera */
+}
+
+.fade-up {
+  position: relative;
+  z-index: 1;
+}
+
+.gradients-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.popover {
+  background-color: #222a;
+  border-color: #fff3;
+  backdrop-filter: blur(4px);
+  /* padding: 8px; */
+  /* margin: -8px; */
+}
+
+.bg-popover {
+  backdrop-filter: blur(4px);
+  background-color: hsl(var(--popover));
 }

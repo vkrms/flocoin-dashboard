@@ -3,6 +3,7 @@ import { Sidebar } from './components/Sidebar';
 import { EventForm } from './components/EventForm';
 import { Menu, X } from 'lucide-react';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { BackgroundGradientAnimation } from './components/ui/background-gradient-animation';
 export function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
@@ -14,14 +15,14 @@ export function App() {
   return <ThemeProvider>
       <div className="bg-[#09090b] h-screen flex flex-col text-white font-sans">
         {/* Mobile header with menu button */}
-        <div className="lg:hidden flex items-center justify-between p-4 bg-[#1c1c1f] sticky top-0 z-20 border-b border-[#27272a]">
+        <div className="lg:hidden flex items-center justify-between p-4 bg-[#1c1c1f] sticky top-0 z-20 border-b border-[#3333]">
           <div className="flex items-center gap-2">
             {/* Show icon on all screen sizes */}
             <img src="/eventflo-icon.png" alt="eventflo icon" className="h-8 w-auto" />
             {/* Hide full logo on all screen sizes */}
             <img src="/eventflo-logo.png" alt="eventflo logo" className="h-8 w-auto hidden" />
           </div>
-          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 rounded-md hover:bg-[#27272a]" aria-label="Toggle menu">
+          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 rounded-md hover:bg-[#3333]" aria-label="Toggle menu">
             {sidebarOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -32,9 +33,19 @@ export function App() {
           <div className={`fixed top-0 left-0 z-20 h-full ${sidebarCollapsed ? 'w-[70px]' : 'w-[240px]'} lg:relative lg:block transition-all duration-300 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
             <Sidebar onClose={() => setSidebarOpen(false)} collapsed={sidebarCollapsed} onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)} />
           </div>
+
           {/* Main content */}
           <main className="flex-1 overflow-auto p-4 lg:p-8">
-            <EventForm />
+            <BackgroundGradientAnimation
+              firstColor='112, 0, 255'
+              secondColor='255, 0, 199'
+              interactive={false}
+              className='fade-up'
+              // opacity={0.8}
+              data-test-id="background-gradient-animation"
+            >
+              <EventForm />
+            </BackgroundGradientAnimation>
           </main>
         </div>
       </div>

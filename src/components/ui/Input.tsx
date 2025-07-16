@@ -31,7 +31,7 @@ export function Input({
   // Determine width class based on input type
   const widthClass = props.type === 'number' ? 'w-32' : 'w-full'; // Increased width for number inputs
   return <input className={`flex h-9 ${widthClass} rounded-md border dark:border-[#3f3f46] light:border-gray-300 
-                 dark:bg-[#27272a] light:bg-white px-3 py-2 text-sm 
+                 dark:bg-[#3333] light:bg-white px-3 py-2 text-sm 
                  dark:text-white light:text-gray-900 placeholder:dark:text-gray-400 placeholder:light:text-gray-500 
                  focus:outline-none focus:ring-1 focus:ring-[#8B5CF6] focus:border-[#8B5CF6] transition-colors
                  [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none ${className}`} aria-label={props.placeholder || props.name || props.id || 'input'} {...modifiedProps} />;

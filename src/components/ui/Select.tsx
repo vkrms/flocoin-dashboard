@@ -89,9 +89,8 @@ export function Select({
   return <div className="relative" ref={ref}>
       <div className="flex h-9 w-full items-center justify-between rounded-md 
                    dark:border-[#3f3f46] light:border-gray-300 border
-                   dark:bg-[#27272a] light:bg-white px-3 py-2 text-sm 
-                   dark:text-white light:text-gray-900 shadow-sm 
-                   dark:hover:bg-[#2d2d33] light:hover:bg-gray-50 cursor-pointer" onClick={() => setIsOpen(!isOpen)} role="combobox" aria-expanded={isOpen} aria-haspopup="listbox" tabIndex={0}>
+                   dark:bg-[#3333] light:bg-white px-3 py-2 text-sm 
+                   dark:text-white light:text-gray-900 shadow-sm cursor-pointer" onClick={() => setIsOpen(!isOpen)} role="combobox" aria-expanded={isOpen} aria-haspopup="listbox" tabIndex={0}>
         <div className="flex items-center">
           {value ? <>
               <span className="dark:text-gray-400 light:text-gray-500 mr-1">
@@ -103,16 +102,11 @@ export function Select({
         <ChevronDown className={`h-4 w-4 opacity-50 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </div>
       {isOpen && contentChild && <div className={`absolute ${dropDirection === 'top' ? 'bottom-full mb-1' : 'top-full mt-1'} left-0 right-0 z-50`}>
-          <div className="dark:bg-[#27272a] light:bg-white 
-                       dark:border-[#3f3f46] light:border-gray-300 border
-                       rounded-md py-1 shadow-md max-h-60 overflow-auto" role="listbox">
+          <div className="bg-popover border-popover border rounded-md py-1 shadow-md max-h-60 overflow-auto popover" role="listbox">
             {isValidElement(contentChild) && Children.map(contentChild.props.children, item => {
           if (isValidElement(item) && item.type === SelectItem) {
             const isSelected = item.props.value === value;
-            return <div className={`px-3 py-2 text-sm cursor-pointer 
-                                 dark:hover:bg-[#3f3f46] light:hover:bg-gray-100 
-                                 flex items-center justify-between 
-                                 ${isSelected ? 'bg-[#8B5CF6]/20 text-[#8B5CF6]' : 'dark:text-white light:text-gray-900'}`} onClick={e => {
+            return <div className={`px-3 py-2 text-sm cursor-pointer flex items-center justify-between ${isSelected ? 'bg-[#8B5CF6]/20 text-[#8B5CF6]' : 'dark:text-white light:text-gray-900'}`} onClick={e => {
               e.stopPropagation();
               handleValueChange(item.props.value);
             }} role="option" aria-selected={isSelected}>

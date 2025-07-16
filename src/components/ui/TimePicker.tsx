@@ -73,11 +73,11 @@ export function TimePicker({
   };
   const displayTime = selectedHour && selectedMinute !== undefined ? `${selectedHour}:${selectedMinute.toString().padStart(2, '0')} ${period}` : placeholder;
   return <div ref={ref} className="relative">
-      <div className="flex h-9 w-full items-center justify-between rounded-md border border-[#3f3f46] bg-[#27272a] px-3 py-2 text-sm text-white shadow-sm cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
+      <div className="flex h-9 w-full items-center justify-between rounded-md border border-[#3f3f46] bg-[#3333] px-3 py-2 text-sm text-white shadow-sm cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
         <span>{displayTime}</span>
         <Clock className="h-4 w-4 opacity-50" />
       </div>
-      {isOpen && <div className={`absolute z-50 ${dropDirection === 'top' ? 'bottom-full mb-1' : 'top-full mt-1'} bg-[#27272a] border border-[#3f3f46] rounded-md shadow-lg p-4 w-56`}>
+      {isOpen && <div className={`absolute z-50 ${dropDirection === 'top' ? 'bottom-full mb-1' : 'top-full mt-1'} bg-popover border border-border rounded-md shadow-lg p-4 w-56`}>
           <div className="flex justify-center items-center gap-4">
             {/* Hour picker */}
             <div className="flex flex-col items-center">

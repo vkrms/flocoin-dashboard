@@ -10,6 +10,7 @@ import { TimePicker } from './ui/TimePicker';
 import { RadioGroup, RadioGroupItem } from './ui/RadioGroup';
 import { ImageUpload } from './ui/ImageUpload';
 import { Tag } from './ui/Tag';
+import { Card } from './ui/Card';
 import { Upload, Search, ChevronLeft, ChevronRight } from 'lucide-react';
 export function EventForm() {
   const tabsListRef = useRef<HTMLDivElement>(null);
@@ -62,7 +63,7 @@ export function EventForm() {
       </div>
       <Tabs defaultValue="basic" className="w-full flex-1 flex flex-col">
         {/* Tabs navigation with arrows */}
-        <div className="border-b dark:border-[#27272a] light:border-gray-200 pb-2 relative">
+        <div className="border-b dark:border-[#3333] light:border-gray-200 pb-2 relative">
           <div className="flex items-center md:block">
             {/* Left scroll arrow - only visible on mobile and positioned outside the scroll area */}
             <button onClick={() => scrollTabs('left')} className="md:hidden flex-shrink-0 h-9 w-9 flex items-center justify-center" aria-label="Scroll tabs left">
@@ -73,13 +74,6 @@ export function EventForm() {
             scrollbarWidth: 'none',
             msOverflowStyle: 'none'
           }}>
-              <style jsx>{`
-                @media (max-width: 768px) {
-                  div::-webkit-scrollbar {
-                    display: none;
-                  }
-                }
-              `}</style>
               <TabsList className="inline-flex min-w-max">
                 <TabsTrigger value="basic" className="bg-[#8B5CF6]/10">
                   Basic Info
@@ -101,15 +95,13 @@ export function EventForm() {
         </div>
         {/* Content area - unchanged */}
         <TabsContent value="basic" className="flex-1 overflow-auto pr-6 mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-[1224px]">
             {/* Left Column */}
             <div className="space-y-6">
-              <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200">
-                <h2 className="text-lg font-semibold mb-4">Event Image</h2>
+              <Card title="Event Image">
                 <ImageUpload />
-              </div>
-              <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200 space-y-5">
-                <h2 className="text-lg font-semibold mb-4">Event Info</h2>
+              </Card>
+              <Card title="Event Info" className="space-y-5">
                 <div className="space-y-4">
                   <div>
                     <Input id="title" placeholder="Title" value="PA Color Festival" />
@@ -140,9 +132,8 @@ export function EventForm() {
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200">
-                <h2 className="text-lg font-semibold mb-4">Event Dates</h2>
+              </Card>
+              <Card title="Event Dates">
                 <div className="space-y-4">
                   <div>
                     <Select defaultValue="utc+2" data-position="auto">
@@ -166,12 +157,11 @@ export function EventForm() {
                     <TimePicker time="21:00" position="auto" />
                   </div>
                 </div>
-              </div>
+              </Card>
             </div>
             {/* Right Column */}
             <div className="space-y-6">
-              <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200">
-                <h2 className="text-lg font-semibold mb-4">Tags</h2>
+              <Card title="Tags">
                 <div className="space-y-4">
                   <div className="flex flex-wrap gap-2 mb-2">
                     {tags.map((tag, index) => <Tag key={index} label={tag} onRemove={() => removeTag(tag)} />)}
@@ -186,9 +176,8 @@ export function EventForm() {
                     {tags.length}/10
                   </div>
                 </div>
-              </div>
-              <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200">
-                <h2 className="text-lg font-semibold mb-4">Event Location</h2>
+              </Card>
+              <Card title="Event Location">
                 <div className="space-y-4">
                   <div className="relative">
                     <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-400" />
@@ -209,11 +198,8 @@ export function EventForm() {
                     <Input id="zip" placeholder="Postal Code" />
                   </div>
                 </div>
-              </div>
-              <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200">
-                <h2 className="text-lg font-semibold mb-4">
-                  Ticket Marketplace Settings
-                </h2>
+              </Card>
+              <Card title="Ticket Marketplace Settings">
                 <div className="space-y-5">
                   <div className="flex items-start space-x-3">
                     <Checkbox id="enableMarketplace" checked={enableMarketplace} onChange={() => setEnableMarketplace(!enableMarketplace)} />
@@ -309,55 +295,46 @@ export function EventForm() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
           {/* Add bottom padding for better scrolling experience */}
           <div className="h-8"></div>
         </TabsContent>
         <TabsContent value="tickets" className="flex-1 overflow-auto pr-6 mt-6">
-          <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200">
-            <h2 className="text-lg font-semibold mb-4">Ticket Information</h2>
+          <Card title="Ticket Information">
             <p>Ticket configuration will be available here.</p>
-          </div>
+          </Card>
         </TabsContent>
         <TabsContent value="presales" className="flex-1 overflow-auto pr-6 mt-6">
-          <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200">
-            <h2 className="text-lg font-semibold mb-4">
-              Presale Configuration
-            </h2>
+          <Card title="Presale Configuration">
             <p>Presale settings will be available here.</p>
-          </div>
+          </Card>
         </TabsContent>
         <TabsContent value="team" className="flex-1 overflow-auto pr-6 mt-6">
-          <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200">
-            <h2 className="text-lg font-semibold mb-4">Team Management</h2>
+          <Card title="Team Management">
             <p>Team settings will be available here.</p>
-          </div>
+          </Card>
         </TabsContent>
         <TabsContent value="fees" className="flex-1 overflow-auto pr-6 mt-6">
-          <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200">
-            <h2 className="text-lg font-semibold mb-4">Fee Structure</h2>
+          <Card title="Fee Structure">
             <p>Fee configuration will be available here.</p>
-          </div>
+          </Card>
         </TabsContent>
         <TabsContent value="privacy" className="flex-1 overflow-auto pr-6 mt-6">
-          <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200">
-            <h2 className="text-lg font-semibold mb-4">Privacy Settings</h2>
+          <Card title="Privacy Settings">
             <p>Privacy configuration will be available here.</p>
-          </div>
+          </Card>
         </TabsContent>
         <TabsContent value="tracking" className="flex-1 overflow-auto pr-6 mt-6">
-          <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200">
-            <h2 className="text-lg font-semibold mb-4">Tracking Options</h2>
+          <Card title="Tracking Options">
             <p>Tracking configuration will be available here.</p>
-          </div>
+          </Card>
         </TabsContent>
         <TabsContent value="publish" className="flex-1 overflow-auto pr-6 mt-6">
-          <div className="dark:bg-[#1c1c1f] light:bg-white p-6 rounded-lg border dark:border-[#27272a] light:border-gray-200">
-            <h2 className="text-lg font-semibold mb-4">Publish Event</h2>
+          <Card title="Publish Event">
             <p>Publishing options will be available here.</p>
-          </div>
+          </Card>
         </TabsContent>
       </Tabs>
     </div>;

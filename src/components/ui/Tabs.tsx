@@ -67,7 +67,7 @@ export function TabsTrigger({
   onSelect,
   className = ''
 }: TabsTriggerProps) {
-  return <button className={`relative mx-1 inline-flex items-center justify-center whitespace-nowrap rounded-md px-4 py-2 text-sm transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 ${isActive ? 'bg-gradient-to-r from-[#8B5CF6] to-[#7c3aed] text-white font-semibold shadow-[0_0_10px_rgba(139,92,246,0.5)] border border-[#a78bfa]' : 'text-gray-400 hover:text-white hover:bg-[#27272a]'} ${className}`} onClick={() => onSelect && onSelect(value)}>
+  return <button className={`relative mx-1 inline-flex items-center justify-center whitespace-nowrap rounded-md px-4 py-2 text-sm transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 ${isActive ? 'bg-gradient-to-r from-[#8B5CF6] to-[#7c3aed] text-white font-semibold shadow-[0_0_10px_rgba(139,92,246,0.5)] border border-[#a78bfa]' : 'text-gray-400 hover:text-white hover:bg-[#3333]'} ${className}`} onClick={() => onSelect && onSelect(value)}>
       {children}
     </button>;
 }
